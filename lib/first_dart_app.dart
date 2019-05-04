@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:english_words/english_words.dart';
 
 //https://codelabs.developers.google.com/codelabs/first-flutter-app-pt1/
-void main() => runApp(FirstDartApp());
-
 class FirstDartApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

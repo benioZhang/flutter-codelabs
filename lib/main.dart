@@ -1,4 +1,5 @@
 import 'package:first_flutter_app/first_dart_app.dart';
+import 'package:first_flutter_app/friendlychat.dart';
 import 'package:flutter/material.dart';
 
 // https://flutter.dev/docs/codelabs
@@ -27,6 +28,7 @@ class Codelab {
 class HomePage extends StatelessWidget {
   final codelabs = [
     Codelab('Write Your First Flutter App', FirstDartApp()),
+    Codelab('Building Beautiful UIs with Flutter', FriendlyChatApp()),
   ];
   final String title;
   final _biggerFont = const TextStyle(fontSize: 18);
