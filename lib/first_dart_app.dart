@@ -40,7 +40,7 @@ class RandomWordsState extends State<RandomWords> {
           // 在每一列之前，添加一个1像素高的分隔线widget
           if (i.isOdd) {
             return Divider(
-              color: Colors.blue,
+              color: Colors.black,
             );
           }
           // 语法 "i ~/ 2" 表示i除以2，但返回值是整形（向下取整），比如i为：1, 2, 3, 4, 5
