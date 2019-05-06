@@ -1,6 +1,7 @@
-import 'package:first_flutter_app/baby_names.dart';
-import 'package:first_flutter_app/first_dart_app.dart';
-import 'package:first_flutter_app/friendlychat.dart';
+import 'shrine/app.dart';
+import 'baby_names.dart';
+import 'first_dart_app.dart';
+import 'friendlychat.dart';
 import 'package:flutter/material.dart';
 
 // https://flutter.dev/docs/codelabs
@@ -31,6 +32,7 @@ class HomePage extends StatelessWidget {
     Codelab('Write Your First Flutter App', FirstDartApp()),
     Codelab('Building Beautiful UIs with Flutter', FriendlyChatApp()),
     Codelab('Firebase for Flutter', BabyNamesApp()),
+    Codelab('MDC 101~104 Flutter', ShrineApp()),
   ];
   final String title;
   final _biggerFont = const TextStyle(fontSize: 18);
