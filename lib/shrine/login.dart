@@ -13,6 +13,7 @@
 // limitations under the License.
 
 import 'package:flutter/material.dart';
+import 'colors.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -33,36 +34,46 @@ class _LoginPageState extends State<LoginPage> {
             SizedBox(height: 80.0),
             Column(
               children: <Widget>[
-                Image.asset('assets/diamond.png'),
+                Image.asset(
+                  'assets/diamond.png',
+                  color: kShrineBlack,
+                ),
                 SizedBox(height: 16.0),
                 Text('SHRINE'),
               ],
             ),
             SizedBox(height: 120.0),
             // name
-            TextField(
-              controller: _userNameController, // 设置控制器
-              decoration: InputDecoration(
-                filled: true,
-                labelText: 'UserName',
+            AccentColorOverride(
+              color: kShrineBrown900,
+              child: TextField(
+                controller: _userNameController, // 设置控制器
+                decoration: InputDecoration(
+                  labelText: 'UserName',
+                ),
               ),
             ),
             // spacer
             SizedBox(height: 12),
             // password
-            TextField(
-              controller: _passwordController,
-              decoration: InputDecoration(
-                filled: true,
-                labelText: 'Password',
+            AccentColorOverride(
+              color: kShrineBrown900,
+              child: TextField(
+                controller: _passwordController,
+                decoration: InputDecoration(
+                  labelText: 'Password',
+                ),
+                obscureText: true, // 将用户输入显示成***
               ),
-              obscureText: true, // 将用户输入显示成***
             ),
             ButtonBar(
               alignment: MainAxisAlignment.end, // 指定button的位置
               children: <Widget>[
                 FlatButton(
                   child: Text('Cancel'),
+                  shape: BeveledRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(7)),
+                  ),
                   onPressed: () {
                     // Clear the text fields
                     _userNameController.clear();
@@ -70,16 +81,17 @@ class _LoginPageState extends State<LoginPage> {
                   }, // 不指定onPressed则默认是disabled状态
                 ),
                 RaisedButton(
+                  elevation: 8,
                   child: Text('Next'),
+                  shape: BeveledRectangleBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(7)),
+                  ),
                   onPressed: () {
                     Navigator.of(context).pop();
                   },
                 )
               ],
             ),
-            // TODO: Wrap Username with AccentColorOverride (103)
-            // TODO: Remove filled: true values (103)
-            // TODO: Wrap Password with AccentColorOverride (103)
           ],
         ),
       ),
@@ -87,4 +99,20 @@ class _LoginPageState extends State<LoginPage> {
   }
 }
 
-// TODO: Add AccentColorOverride (103)
+class AccentColorOverride extends StatelessWidget {
+  const AccentColorOverride({Key key, this.color, this.child})
+      : super(key: key);
+  final Color color;
+  final Widget child;
+
+  @override
+  Widget build(BuildContext context) {
+    return Theme(
+      child: child,
+      data: Theme.of(context).copyWith(
+        accentColor: color,
+        brightness: Brightness.dark,
+      ),
+    );
+  }
+}

@@ -114,3 +114,11 @@ flutter:
   - packages/shrine_images/35-0.jpg
   - packages/shrine_images/36-0.jpg
   - packages/shrine_images/37-0.jpg
+
+  # 注意这里的格式，如果写错的话 packages get会报错。写完最好格式化一下代码
+  fonts:
+  - family: Rubik
+    fonts:
+    - asset: fonts/Rubik-Regular.ttf
+    - asset: fonts/Rubik-Medium.ttf
+      weight: 500
