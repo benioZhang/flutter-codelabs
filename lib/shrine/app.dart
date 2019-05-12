@@ -18,22 +18,44 @@ import 'home.dart';
 import 'login.dart';
 import 'colors.dart';
 import 'supplemental/cut_corners_border.dart';
+import 'backdrop.dart';
+import 'model/product.dart';
+import 'category_menu_page.dart';
 
-// TODO: Convert ShrineApp to stateful widget (104)
-class ShrineApp extends StatelessWidget {
+class ShrineApp extends StatefulWidget {
+  @override
+  _ShrineAppState createState() => _ShrineAppState();
+}
+
+class _ShrineAppState extends State<ShrineApp> {
+  Category _currentCategory = Category.all;
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Shrine',
-      // TODO: Change home: to a Backdrop with a HomePage frontLayer (104)
-      home: HomePage(),
-      // TODO: Make currentCategory field take _currentCategory (104)
-      // TODO: Pass _currentCategory for frontLayer (104)
-      // TODO: Change backLayer field value to CategoryMenuPage (104)
+      home: Backdrop(
+        currentCategory: _currentCategory,
+        frontLayer: HomePage(
+          category: _currentCategory,
+        ),
+        backLayer: CategoryMenuPage(
+          currentCategory: _currentCategory,
+          onCategoryTap: onCategoryTap,
+        ),
+        frontTitle: Text('Shrine'),
+        backTitle: Text('Menu'),
+      ),
       initialRoute: '/login',
       onGenerateRoute: _getRoute,
       theme: _kShrineTheme,
     );
+  }
+
+  void onCategoryTap(Category category) {
+    setState(() {
+      _currentCategory = category;
+    });
   }
 
   Route<dynamic> _getRoute(RouteSettings settings) {
@@ -54,26 +76,28 @@ final ThemeData _kShrineTheme = _buildShrineTheme();
 ThemeData _buildShrineTheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
-//    accentColor: kShrineBrown900,
-    primaryColor: kShrinePurple,
+    accentColor: kShrineBrown900,
+    primaryColor: kShrinePink100,
+    buttonColor: kShrinePink100,
     buttonTheme: base.buttonTheme.copyWith(
-        buttonColor: kShrinePurple,
-        textTheme: ButtonTextTheme.primary,
-        colorScheme: ColorScheme.light().copyWith(
-          primary: kShrinePurple,
-        )),
-    scaffoldBackgroundColor: kShrineSurfaceWhite,
-//    cardColor: kShrineSurfaceWhite,
-//    textSelectionColor: kShrinePink100,
-//    errorColor: kShrineErrorRed,
+      buttonColor: kShrinePink100,
+      textTheme: ButtonTextTheme.normal,
+    ),
+    scaffoldBackgroundColor: kShrineBackgroundWhite,
+    cardColor: kShrineBackgroundWhite,
+    textSelectionColor: kShrinePink100,
+    errorColor: kShrineErrorRed,
     textTheme: _buildShrineTextTheme(base.textTheme),
     primaryTextTheme: _buildShrineTextTheme(base.primaryTextTheme),
     accentTextTheme: _buildShrineTextTheme(base.accentTextTheme),
     primaryIconTheme: base.iconTheme.copyWith(
-      color: kShrineSurfaceWhite,
+      color: kShrineBrown900,
     ),
     inputDecorationTheme: InputDecorationTheme(
       border: CutCornersBorder(),
+    ),
+    iconTheme: base.iconTheme.copyWith(
+      color: kShrineBrown900,
     ),
   );
 }
@@ -91,11 +115,14 @@ TextTheme _buildShrineTextTheme(TextTheme base) {
           fontWeight: FontWeight.w400,
           fontSize: 14,
         ),
+        body2: base.body2.copyWith(
+          fontWeight: FontWeight.w500,
+          fontSize: 16,
+        ),
       )
       .apply(
-//        fontFamily: 'Rubik',
-//        displayColor: kShrineBrown900,
-//        bodyColor: kShrineBrown900,
-        fontFamily: 'Raleway',
+        fontFamily: 'Rubik',
+        displayColor: kShrineBrown900,
+        bodyColor: kShrineBrown900,
       );
 }

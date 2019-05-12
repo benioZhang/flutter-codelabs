@@ -19,56 +19,14 @@ import 'model/products_repository.dart';
 import 'supplemental/asymmetric_view.dart';
 
 class HomePage extends StatelessWidget {
-  // TODO: Add a variable for Category (104)
+  final Category category;
+
+  HomePage({this.category: Category.all});
+
   @override
   Widget build(BuildContext context) {
-    // TODO: Return an AsymmetricView (104)
-    // TODO: Pass Category variable to AsymmetricView (104)
-    return Scaffold(
-      appBar: AppBar(
-        centerTitle: true,
-        brightness: Brightness.dark,
-        title: Text('SHRINE'),
-        leading: IconButton(
-            tooltip: 'menu', // 长按提示
-            icon: Icon(
-              Icons.menu,
-              semanticLabel: 'menu', // 类似Android中的accessibilityLabel.
-            ),
-            onPressed: () {
-              print('menu button');
-            }),
-        actions: <Widget>[
-          IconButton(
-            icon: Icon(
-              Icons.search,
-              semanticLabel: 'search',
-            ),
-            onPressed: () {
-              print('Search button');
-            },
-          ),
-          IconButton(
-            icon: Icon(
-              Icons.tune,
-              semanticLabel: 'filter',
-            ),
-            onPressed: () {
-              print('Filter button');
-            },
-          )
-        ],
-      ),
-//      body: GridView.count(
-//        crossAxisCount: 2, // 滚动方向称为主轴，非滚动轴称为交叉轴。指定2列
-//        padding: EdgeInsets.all(16),
-//        childAspectRatio: 8.0 / 9.0,
-//        children: _buildGridCards(context),
-//      ),
-      body: AsymmetricView(
-        products: ProductsRepository.loadProducts(Category.all),
-      ),
-      resizeToAvoidBottomInset: false, // 确保键盘不会改变主页或其小部件的大小
+    return AsymmetricView(
+      products: ProductsRepository.loadProducts(category),
     );
   }
 
