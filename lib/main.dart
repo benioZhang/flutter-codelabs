@@ -1,8 +1,11 @@
+import 'package:provider/provider.dart';
+import 'package:flutter/material.dart';
 import 'shrine/app.dart';
 import 'baby_names.dart';
 import 'first_dart_app.dart';
 import 'friendlychat.dart';
-import 'package:flutter/material.dart';
+import 'cupertino_store/app_state_model.dart';
+import 'cupertino_store/app.dart';
 
 // https://flutter.dev/docs/codelabs
 void main() => runApp(MyApp());
@@ -33,6 +36,12 @@ class HomePage extends StatelessWidget {
     Codelab('Building Beautiful UIs with Flutter', FriendlyChatApp()),
     Codelab('Firebase for Flutter', BabyNamesApp()),
     Codelab('MDC 101~104 Flutter', ShrineApp()),
+    Codelab(
+        'Building a Cupertino app with Flutter',
+        ChangeNotifierProvider<AppStateModel>(
+          builder: (context) => AppStateModel()..loadProducts(),
+          child: CupertinoStoreApp(),
+        )),
   ];
   final String title;
   final _biggerFont = const TextStyle(fontSize: 18);

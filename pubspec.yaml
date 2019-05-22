@@ -27,8 +27,10 @@ dependencies:
   cloud_firestore: ^0.8.2
   shrine_images: 1.1.1
   intl: ^0.15.6
+  provider: ^2.0.0+1
 
 dev_dependencies:
+  pedantic: ^1.4.0
   flutter_test:
     sdk: flutter
 
