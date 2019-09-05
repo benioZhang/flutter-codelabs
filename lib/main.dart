@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import 'animation_tutorial.dart';
+import 'animation/animation_tutorial.dart';
+import 'animation/hero_animations.dart';
 import 'baby_names.dart';
 import 'cupertino_store/app.dart';
 import 'cupertino_store/app_state_model.dart';
@@ -45,6 +46,7 @@ class HomePage extends StatelessWidget {
           child: CupertinoStoreApp(),
         )),
     Codelab('Animation Tutorial', AnimationTutorial()),
+    Codelab('Hero Animations', HeroAnimationDemo()),
   ];
   final String title;
   final _biggerFont = const TextStyle(fontSize: 18);
